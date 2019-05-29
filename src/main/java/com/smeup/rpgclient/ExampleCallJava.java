@@ -7,6 +7,7 @@ public class ExampleCallJava {
 
 	public static void main(String[] args) {
 	    JavaSystemInterface.INSTANCE.addJavaInteropPackage("com.smeup.rpgclient");
+	    RunnerKt.setTraceMode(true);
 	    RunnerKt.main(new String[] {"CALLJAVA"});
 	}
 }
