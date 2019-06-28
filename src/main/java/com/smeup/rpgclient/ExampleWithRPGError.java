@@ -3,22 +3,23 @@ package com.smeup.rpgclient;
 import java.io.File;
 import java.util.Arrays;
 
-import com.smeup.rpgparser.CommandLineParms;
 import com.smeup.rpgparser.RunnerKt;
 import com.smeup.rpgparser.rgpinterop.DirRpgProgramFinder;
 import com.smeup.rpgparser.rgpinterop.RpgSystem;
 
-public class Example1 {
+public class ExampleWithRPGError {
 
 	/**
-	 * Example on passing and receiving values
+	 * Example calling an RPG program that raises an error
 	 */
 	public static void main(String[] args) {
 		RpgSystem.INSTANCE.addProgramFinder(new DirRpgProgramFinder(new File("examples/rpg")));
 		
-		CommandLineParms parms = RunnerKt.getProgram("CALCFIB").singleCall(Arrays.asList("7"));
+		try {
+			RunnerKt.getProgram("ERROR01").singleCall(Arrays.asList("7"));
+		} catch (Throwable t) {
+			System.out.println("Got exception " + t);
+		}
 		
-		//It should output 13
-		System.out.println(parms.getParmsList().get(0));
 	}
 }
